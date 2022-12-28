@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: traceconsumer2
-        image: ghcr.io/gillesanz21/tc2
+        image: ghcr.io/guillesanz21/tc2
         ports:
         - containerPort: 8080
         env:
@@ -48,7 +48,7 @@ spec:
   ports:
   - protocol: TCP
     port: 80
-    targetPort: 8080
+    targetPort: 8085
   type: LoadBalancer
 
 ---
@@ -70,9 +70,9 @@ spec:
     spec:
       containers:
       - name: traceproducer
-        image: ghcr.io/gillesanz21/tp
+        image: ghcr.io/guillesanz21/tp
         ports:
-        - containerPort: 8080
+        - containerPort: 8085
         env:
         - name: spring.cloud.stream.kafka.binder.brokers
           value: "${KAFKA_SERVICE_SERVICE_HOST}:9092"
