@@ -39,3 +39,4 @@ Dec 28, 2022 2:22:32 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notif
 INFO: Unsupported notification method: $/setTrace
 Dec 28, 2022 2:31:42 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+2022.12.28 16:00:03 WARN  no build target for: /home/guille/master/apsv/microservicios/traceconsumer2/src/main/java/es/upm/dit/apsv/traceconsumer2/repository/TransportationOrderRepository.java[0m

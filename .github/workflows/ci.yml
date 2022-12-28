@@ -40,3 +40,32 @@ jobs:
         context: .
         push: true
         tags: ghcr.io/guillesanz21/tc2:latest
+  
+  deploy:
+    needs: verify-and-package
+    runs-on: ubuntu-latest
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+    steps:
+    - uses: actions/checkout@v3
+    - id: 'auth'
+      uses: 'google-github-actions/auth@v1'
+      with:
+        credentials_json: '${{ secrets.GCLOUD_SA }}'
+    - id: 'get-credentials'
+      uses: 'google-github-actions/get-gke-credentials@v1'
+      with:
+        cluster_name: 'apsv'
+        location: 'us-central1'
+
+    # The KUBECONFIG env var is automatically exported and picked up by kubectl.
+    - id: 'deployment-kafka'
+      run: 'kubectl apply -f kafka-deployment.yaml'
+    - run: 'kubectl wait deployment/kafka --for condition=available --timeout=300s'
+    - run: 'kubectl get pods'
+    - id: 'deployment-mypod'
+      run: 'kubectl create secret docker-registry github-registry --docker-server="ghcr.io" --docker-username="guillesanz21" --docker-password="${{ secrets.PAT }}" --docker-email="guillermo.sanz.gonzalez@alumnos.upm.es" -o yaml --dry-run=client | kubectl apply -f -'
+    - run: 'kubectl apply -f deployment.yaml'
+    - run: 'kubectl get deployments'
+    - run: 'kubectl get pods'
