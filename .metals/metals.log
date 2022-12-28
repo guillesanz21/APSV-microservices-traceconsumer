@@ -37,3 +37,5 @@ WARNING: Unmatched cancel notification for request id 555
 2022.12.28 14:16:57 WARN  no build target for: /home/guille/master/apsv/microservicios/traceconsumer2/src/test/java/es/upm/dit/apsv/traceconsumer2/test/TraceConsumerApplicationTests.java[0m
 Dec 28, 2022 2:22:32 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
 INFO: Unsupported notification method: $/setTrace
+Dec 28, 2022 2:31:42 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
